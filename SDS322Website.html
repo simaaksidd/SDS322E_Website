@@ -56,12 +56,35 @@
     <main>
         <section id="introduction">
             <h2>Welcome to Our Website!</h2>
-            <p>This is the intro section of the website.</p>
+            <p>Studying insurance complaints and claims to identify frequent complaint triggers, 
+                products seeing more disputes, and factors impacting complaint resolution timelines. 
+                The goal was to unpack the consumer-side dynamics of the insurance claims process. 
+                Deriving data-driven intelligence on pain points can better inform policyholders and 
+                insurance providers on improving claims outcomes and preventing issues proactively where possible. 
+                These two aspects play a crucial role in the financial industry, offering valuable 
+                insights into customer satisfaction, regulatory compliance, and potential fraudulent activities. It is crucial to discern the differences between complaints and claims, as each serves distinct purposes in the evaluation of insurance processes, customer experiences, and the overall integrity of the insurance system. Overall, insurance complaints serve as an essential feedback channel that, if studied systematically, can enhance financial protection for citizens relying on risk transfer safeguards.</p>
         </section>
 
         <section id="data">
             <h2>Data Information</h2>
-            <p>This is the data section of the website.</p>
+            <p>The dataset is from the Texas Open Data Portal and contains information on insurance complaints filed within the state of Texas. The specific dataset is titled "Insurance Complaints: All Data".</p>
+
+            <p> Some of the key variables/features in the dataset include:</p>
+            <ul>
+                <li>Complaint type</li> 
+                <li>Coverage type</li>
+                <li>Received date</li>
+                <li>Closed date</li>
+                <li>Complaint confirmation</li>
+            </ul>    
+            <p>In terms of data preparation and cleaning, a few steps were taken:</p>
+            <ul>
+                <li>The 'Received date' and 'Closed date' columns were converted to Date objects in order to calculate the time a complaint stayed open (resolved time).</li>
+                <li>When calculating average resolved time per coverage type, complaints with missing coverage type data were removed.</li> 
+                <li>The dataset was grouped by coverage type and summary statistics (mean resolved time) was calculated.</li>
+            </ul>
+                The key preprocessing steps involved converting string dates to date objects, removing missing data, and calculating new summary variables like resolved time and average resolved time to support further analysis. The resulting cleaned dataset was then used to test hypotheses related to complaint types, resolution times per coverage type, and factors impacting resolution time.
+                </p>
         </section>
 
         <section id="exploratory analysis">
@@ -90,11 +113,6 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 Your Website. All Rights Reserved.</p>
-    </footer>
-
-</body>
-</html>
         <p>&copy; 2023 Your Website. All Rights Reserved.</p>
     </footer>
 
