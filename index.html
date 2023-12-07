@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Claims</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Insurance Claims</h1>
+    </header>
+
+    <nav>
+        <a href="#introduction">Introduction</a>
+        <a href="#data">Data</a>
+        <a href="#exploratory-analysis">Exploratory Analysis</a>
+        <a href="#modeling">Modeling</a>
+        <a href="#ethics">Ethics</a>
+
+    </nav>
+
+    <main>
+        <section id="introduction">
+            <div style="text-align: center;">
+            <h2>Welcome to Our Website!</h2>
+            </div>
+            <p>Studying insurance complaints and claims to identify frequent complaint triggers, 
+                products seeing more disputes, and factors impacting complaint resolution timelines. 
+                The goal was to unpack the consumer-side dynamics of the insurance claims process. 
+                Deriving data-driven intelligence on pain points can better inform policyholders and 
+                insurance providers on improving claims outcomes and preventing issues proactively where possible. 
+                These two aspects play a crucial role in the financial industry, offering valuable 
+                insights into customer satisfaction, regulatory compliance, and potential fraudulent activities. It is crucial to discern the differences between complaints and claims, as each serves distinct purposes in the evaluation of insurance processes, customer experiences, and the overall integrity of the insurance system. Overall, insurance complaints serve as an essential feedback channel that, if studied systematically, can enhance financial protection for citizens relying on risk transfer safeguards.</p>
+        </section>
+
+        <section id="data">
+            <div style="text-align: center;">
+            <h2>Data Information</h2>
+            </div>
+            <p>The dataset is from the Texas Open Data Portal and contains information on insurance complaints filed within the state of Texas. The specific dataset is titled "Insurance Complaints: All Data".</p>
+
+            <p> Some of the key variables/features in the dataset include:</p>
+            <ul>
+                <li>Complaint type</li> 
+                <li>Coverage type</li>
+                <li>Received date</li>
+                <li>Closed date</li>
+                <li>Complaint confirmation</li>
+            </ul>    
+            <p>In terms of data preparation and cleaning, a few steps were taken:</p>
+            <ul>
+                <li>The 'Received date' and 'Closed date' columns were converted to Date objects in order to calculate the time a complaint stayed open (resolved time).</li>
+                <li>When calculating average resolved time per coverage type, complaints with missing coverage type data were removed.</li> 
+                <li>The dataset was grouped by coverage type and summary statistics (mean resolved time) was calculated.</li>
+            </ul>
+                The key preprocessing steps involved converting string dates to date objects, removing missing data, and calculating new summary variables like resolved time and average resolved time to support further analysis. The resulting cleaned dataset was then used to test hypotheses related to complaint types, resolution times per coverage type, and factors impacting resolution time.
+                </p>
+        </section>
+
+        <section id="exploratory-analysis">
+            <div style="text-align: center;">
+            <h2>Exploratory Analysis</h2>
+            </div>
+            <ul>
+                <li>Hypothesis & Visualization 1</li>
+                <p>Hypothesis #1: Insurance claim denial is the top reason for insurance complaints.</p>
+                <div style="text-align: center;">
+                <img src="/images/hypo1.png" alt="Visualization 1">
+                </div>
+                <p>Visualization #1: As seen in the bar graph above, 
+                    the most frequent reason for a claim complaint is for Denial of claim. 
+                    Claim handling delay also is a major reason why complaints are filed. 
+                    Because of this, the hypothesis is accepted that claim denial is the top reason for insurance complaints.</p>
+                <li>Hypothesis & Visualization 2</li>
+                <p>Hypothesis #2: Education level has a negative correlation with fraud, 
+                    with a lower likelihood of fraud being reported with individuals with higher levels of education. 
+                    Individuals with a higher level of education likely have a better understanding of the 
+                    consequences of committing insurance fraud, and thus will avoid activities that could elicit fraud.</p>
+                <div style="text-align: center;">    
+                <img src="/images/hypo2.png" alt="Visualization 2">
+                </div>
+                <p>Visualization #2: The bar graph above visualizes all of the fraud cases reported and sorts them by the education level 
+                    of the individual who filled the fraudulent claim. As seen above, the frequency of fraud by education level is relatively 
+                    equal across all education levels. This means that fraud is committed by individuals regardless of education level.</p>
+                <li>Hypothesis & Visualization 3</li>
+                <p>Hypothesis #3: The availability of a police report has a negative correlation with fraud reporting. 
+                    In other words, the presence of a police report means that it is less likely that fraud will be reported. 
+                    A police report provides official documentation of the incident and thus will provide less of an opportunity for 
+                    the individual to commit fraud.</p>
+                <div style="text-align: center;">
+                <img src="/images/hypo3.png" alt="Visualization 3">
+                </div>
+                <p>Visualization #3: The bar graph above visualizes all of the fraud cases reported and classified whether a 
+                    police report was available with the original claim or not. As seen above, fraud cases that did not have 
+                    a police report available were more frequent than those that did have a police report. </p>
+                <li>Hypothesis & Visualization 4</li>
+                <p>Hypothesis 4: The prevalence of insurance claim fraud is correlated with cases that have higher financial stakes, 
+                    meaning that significant damage or injury occurred. This is because committing fraud is a very serious risk, 
+                    so there must be a reasonable financial payout for fraudsters to make the risks worthwhile. </p>
+                <p><em>Visualizations in the Modeling Section</em></p>
+            </ul>
+        </section>
+
+        <section id="modeling">
+            <div style="text-align: center;">
+            <h2>Modeling</h2>
+            </div>
+            <p>Initially, we decided to model the first dataset, however, the data was too large and was not good for modeling, so we decided to use dataset 2. First let's figure out which types of learning types we need to use for our hypotheses. For all of the hypotheses, the type of learning we will need to use is classification. Before starting any model, though, we had to start by encoding a great deal of variables so that the models ran smoothly. </p>
+            <p>We encoded binary categorical variables by assigning a 0 one value and 1 to another. 
+                We then set up our feature and target variables. The target variable was fraud_reported. For the feature variables, we had to drop a great deal of variables that were not important for our hypotheses such as 'policy_number' and 'policy_bind_date.'. We then ran a random forest and SVM model. The accuracy scores were similar, but we decided to go with the random forest. The accuracies for both are pretty low, .0765 for Random Forest and 0.7512 for SVM, so that is something important for stakeholders to understand before using this model.  </p>
+
+            <p>Diving deeper, we decided to make a heatmap to visualize the confusion matrix. Analyzing this confusion matrix, I can see that there were a great deal of false negatives, which is understandable given the accuracy.</p>
+            <div style="text-align: center;">    
+            <img src="/images/hypo41.png" alt="Visualization 4">
+            </div>
+            <p>There is a very small amount of false positives, because looking at the feature importance, we noticed that incident_severity was the most important feature, which is important in hypothesis 4, it seems like there is a higher deal of fraud when the severity is reported and hobbies are reported. </p>
+            <div style="text-align: center;"> 
+            <img src="/images/hypo42.png" alt="Visualization 4">
+            </div>
+        </section>
+
+        <section id="ethics">
+            <div style="text-align: center;">
+            <h2>Ethics</h2>
+            </div>
+            <ul>
+                <li>Social Need of This Research (Anticipate Purpose):</li>
+                <p>The implications of this project are socially significant, as the observed correlations between independent and dependent variables bear relevance to both the prosperity of insurance companies and the well-being of their customers. For insurance companies, the findings contribute crucial insights into factors influencing the frequency of insurance claims and the effectiveness of fraud detection mechanisms. For consumers, the project serves as an educational resource, enhancing understanding of the insurance system, fostering an environment open to improved integrity, and providing insights on minimizing both claims and fraudulent activities.</p>
+                <li>Who Matters? Representativeness (Engage People):</li>
+                <p>The research was prioritized to address the interests of the two key stakeholders engaged in the study: insurance companies and their customers. The primary objective is to empower insurance companies to augment their customer base by finding a delicate balance between approving and denying claims, which would minimize complaints, and enhancing fraud detection mechanisms. Simultaneously, it provides a valuable avenue for customers to deepen their understanding of their insurance policies, which fosters an opportunity for increased integrity by minimizing fraudulent activities. </p>
+                <li>Is the Research Controversial? (Reflect on Purpose): </li>
+                <p>In line with the previously outlined research goals and methodologies, our study was strictly objective-driven, aiming to enhance both customer satisfaction as well as the overall success of insurance companies. Thus, the nature of our research is inherently non-controversial. However, to safeguard against potential misinterpretations or the unintentional creation of controversy, seeking guidance from experts within the insurance field and gathering input from stakeholders will serve to minimize any likelihood of misunderstanding or misrepresentation of our findings.</p>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Your Website. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
